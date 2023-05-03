@@ -14,10 +14,10 @@ import flak.login.FlakUser;
 import flak.login.LoginRequired;
 import flak.login.SessionManager;
 
-public class HelloWorld {
+public class VeryBasicWebApp {
   App app;
   
-  public HelloWorld(int port) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+  public VeryBasicWebApp(int port) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
     app = Flak.createHttpApp(port);
     app.scan(this);
   }
@@ -62,6 +62,8 @@ public class HelloWorld {
       r.redirect("/login");
   }
   
+  
+  
   @Route("/logout")
   public void logout(SessionManager sessionManager) {
     FlakSession session = sessionManager.getCurrentSession(app.getRequest());
@@ -73,8 +75,8 @@ public class HelloWorld {
   public static void main(String[] args) throws Exception {
     int port = 8080;
     //App app = Flak.createHttpApp(port);
-    //app.scan(new HelloWorld());
-    HelloWorld hw = new HelloWorld(port);    
+    //app.scan(new VeryBasicWebApp());
+    VeryBasicWebApp hw = new VeryBasicWebApp(port);    
     System.err.println("Serving on port " + port);
     hw.app.start();
     //Desktop.getDesktop().browse(new URI(app.getRootUrl()));
