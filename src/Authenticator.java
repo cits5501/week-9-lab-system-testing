@@ -5,14 +5,8 @@
 /**
  * check whether user+password combination is valid.
  */
-public class Authenticator {
+public interface Authenticator {
 
-  /**
-   * 
-   */
-  public Authenticator() {
-    // TODO Auto-generated constructor stub
-  }
-
+  boolean isValid(String username, String password);
 
 }
