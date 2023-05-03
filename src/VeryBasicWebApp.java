@@ -37,11 +37,11 @@ public class VeryBasicWebApp {
   @Route("/app")
   @LoginRequired
   public String appPage(FlakUser user) {
-    return "Welcome " + user.getId();
+    return "Welcome, logged in user " + user.getId();
   }
   
   /**
-   * Example of how form data can be parsed in a POST request.
+   * process a "/login" form submission
    */
   @Post
   @Route("/login")
@@ -49,13 +49,13 @@ public class VeryBasicWebApp {
     // just for debugging
     System.err.println("form params were:" + form.parameters());
     
-    String login = form.get("username");
-    String pass = form.get("password");
+    String username = form.get("username");
+    String password = form.get("password");
 
-    if (login.equals("foo") && pass.equals("bar")) {
-      SessionManager dsm = sessionManager;
-      FlakUser user = dsm.createUser(login);
-      dsm.openSession(app, user, r);
+    if (username.equals("foo") && password.equals("bar")) {
+      SessionManager sm = sessionManager;
+      FlakUser user = sm.createUser(username);
+      sm.openSession(app, user, r);
       r.redirect("/app");
     }
     else
